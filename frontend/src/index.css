@@ -1,0 +1,192 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'CustomArabic';
+  src: url('/fonts/Al-Kanz-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    /* Prevent zoom on iOS when focusing inputs */
+    -webkit-text-size-adjust: 100%;
+    /* Smooth scrolling */
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-white text-secondary-800;
+    line-height: 1.5;
+    /* Prevent horizontal scroll */
+    overflow-x: hidden;
+    /* Ensure proper touch scrolling on iOS */
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Prevent zoom on form inputs on iOS */
+  input, select, textarea {
+    font-size: 16px;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif text-secondary-900;
+    line-height: 1.2;
+  }
+  
+  h1 {
+    @apply text-2xl md:text-4xl font-semibold;
+  }
+  
+  h2 {
+    @apply text-xl md:text-3xl font-semibold;
+  }
+  
+  h3 {
+    @apply text-lg md:text-2xl font-semibold;
+  }
+  
+  h4 {
+    @apply text-base md:text-xl font-semibold;
+  }
+  
+  p {
+    @apply mb-4;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-3 py-2 md:px-4 md:py-2 rounded-md font-medium transition-colors duration-200 text-sm md:text-base;
+    touch-action: manipulation;
+  }
+  
+  .btn-sm {
+    @apply px-2 py-1 md:px-3 md:py-1 text-xs md:text-sm;
+  }
+  
+  .btn-primary {
+    @apply bg-primary-600 text-white hover:bg-primary-700 active:bg-primary-800;
+  }
+  
+  .btn-secondary {
+    @apply bg-secondary-100 text-secondary-800 hover:bg-secondary-200 active:bg-secondary-300;
+  }
+
+  .btn-accent {
+    @apply bg-accent-600 text-white hover:bg-accent-700 active:bg-accent-800;
+  }
+  
+  .card {
+    @apply bg-white rounded-lg shadow-card hover:shadow-card-hover transition-shadow duration-200 overflow-hidden;
+    touch-action: manipulation;
+  }
+  
+  .form-input {
+    @apply w-full px-3 py-2 border border-secondary-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm md:text-base;
+  }
+  
+  .form-label {
+    @apply block text-sm font-medium text-secondary-700 mb-1;
+  }
+  
+  .nav-link {
+    @apply flex items-center px-4 py-3 text-secondary-100 rounded-md transition-colors duration-200;
+  }
+  
+  .nav-link.active {
+    @apply bg-secondary-800 text-white;
+  }
+  
+  .nav-link:not(.active):hover {
+    @apply bg-secondary-700 text-white;
+  }
+}
+
+/* Animation for page transitions */
+.page-enter {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.page-exit {
+  opacity: 1;
+}
+
+.page-exit-active {
+  opacity: 0;
+  transition: opacity 300ms;
+}
+
+/* Mobile-specific improvements */
+@media (max-width: 768px) {
+  /* Ensure proper touch targets */
+  button, .btn, input, select, textarea {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Improve spacing on mobile */
+  .card {
+    @apply mx-2;
+  }
+  
+  /* Better mobile typography */
+  .poem-text {
+    @apply text-base leading-relaxed;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* Typography for poetry display */
+.poem-text {
+  @apply font-serif text-base md:text-lg leading-relaxed text-secondary-800 whitespace-pre-line;
+}
+
+/* RTL language support */
+[dir="rtl"] {
+  text-align: right;
+}
+
+/* Fix for mobile modal scrolling */
+.modal-open {
+  overflow: hidden;
+}
+
+/* Ensure modals work properly on mobile */
+@media (max-width: 768px) {
+  .fixed.inset-0 {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+}
