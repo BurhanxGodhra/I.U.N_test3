@@ -14,6 +14,7 @@ from dotenv import load_dotenv
 from bson import ObjectId
 import boto3
 from botocore.exceptions import ClientError
+import uvicorn
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -957,3 +958,8 @@ async def root():
 @app.get("/test")
 async def test():
     return {"status": "API is running"}
+
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8000))  # Use Railway's port if available
+    uvicorn.run("main:app", host="0.0.0.0", port=port)
